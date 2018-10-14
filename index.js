@@ -1,9 +1,8 @@
 console.log("hello world");
 
 var fs = require('fs');
-// console.log(fs);
 var http = require('http');
-// console.log(http);
+var movie_list = require('./my_lib/list_data');
 
 function serveStatic(res, path, contentType, responseCode){
   if(!responseCode) responseCode = 200;
@@ -41,5 +40,10 @@ http.createServer(function(req, res) {
       console.log(__dirname + path);
       res.writeHead(404, {'Content-Type': 'text/plain'});
       res.end("404 Page not found");
+
+  //Testing module import
+    console.log(movie_list.getAll());
+    console.log(movie_list.getOne("Avalon"));
+    console.log(movie_list.deleteOne("The Goonies"));
   }
 }).listen(3000);
